@@ -91,9 +91,9 @@ jobs:
     
     - name: Install Feeds
       run: |
-        chmod +x $DIY_P1_SH && sed -i -e 's/\r$//' $GITHUB_WORKSPACE/$DIY_P1_SH
+        git update-index --chmod=+x DIY_P1_SH && sed -i -e 's/\r$//' $GITHUB_WORKSPACE/$DIY_P1_SH
         cd $OPENWRT_PATH
-        $GITHUB_WORKSPACE/$DIY_SCRIPT
+        ./$GITHUB_WORKSPACE/$DIY_SCRIPT
         
     - name: Load Custom Configuration
       run: |
