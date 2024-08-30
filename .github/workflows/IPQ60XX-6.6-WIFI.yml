@@ -104,6 +104,8 @@ jobs:
         rm -rf package/feeds/packages/fibocom-qmi-wwan
         rm -rf feeds/packages/kernel/fibocom-qmi-wwan
         rm -rf /packages/*/fibocom-qmi-wwan
+        rm -rf package/feeds/packages/quectel-cm
+        rm -rf /packages/feeds/packages/quectel-cm
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
