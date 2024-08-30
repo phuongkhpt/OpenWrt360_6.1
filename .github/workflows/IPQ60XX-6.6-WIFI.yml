@@ -101,7 +101,9 @@ jobs:
         sed -i '/sqm_scripts_nss/d' $OPENWRT_PATH/feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        
+        rm -rf package/feeds/packages/fibocom-qmi-wwan
+        rm -rf feeds/packages/kernel/fibocom-qmi-wwan
+        rm -rf /packages/*/fibocom-qmi-wwan
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
@@ -111,7 +113,7 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         make defconfig
-        make download -j8
+        make download -j2 || make download -j1 V=sc
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
