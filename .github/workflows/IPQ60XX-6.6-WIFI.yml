@@ -106,6 +106,15 @@ jobs:
         rm -rf /packages/*/fibocom-qmi-wwan
         rm -rf package/feeds/packages/quectel-cm
         rm -rf /packages/feeds/packages/quectel-cm
+        
+    - name: Apply patches   
+      run: |
+        git config --global user.name "OpenWrt Builder"
+        git config --global user.email "buster-openwrt@ovvo.uk"
+        cd $OPENWRT_PATH/feeds/luci
+        wget https://raw.githubusercontent.com/openwrt-ipq60xx/patches/main/feeds/luci/0001-show-soc-status-on-luci.patch
+        git am 0001-show-soc-status-on-luci.patch  
+        
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
