@@ -97,6 +97,8 @@ jobs:
         #rm -rf package/feeds/packages/fibocom-qmi-wwan
         #rm -rf feeds/packages/kernel/fibocom-qmi-wwan
         #rm -rf /packages/*/fibocom-qmi-wwan
+        sed -i '/nss_packages/d' openwrt/feeds.conf.default
+        sed -i '/sqm_scripts_nss/d' openwrt/feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         
